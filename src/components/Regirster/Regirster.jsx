@@ -12,7 +12,7 @@ let {data}= await axios.post('https://ecommerce.routemisr.com/api/v1/auth/signup
   const validationSchema = Yup.object({
     name: Yup.string().min(3, "name is too short").max(10, "name is too long").required("name is required"),
     email: Yup.string().email("email not valid").required("email is requierd"),
-    password: Yup.string().matches(!/^[A-Z][a-z0-9]{8-3}$/, "invalid password").required("password requierd"),
+    password: Yup.string().matches(/^[A-Z][a-z0-9]{7,12}$/, "Invalid password").required("Password required"),   
     repassword: Yup.string().oneOf([Yup.ref("password")],"password and repassword should match").required("password requierd"),
     phone: Yup.string().matches(/^01[0125][0-9]{8}$/, "invalid phone").required("phone required"),
 
