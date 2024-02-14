@@ -1,19 +1,41 @@
 import { useFormik } from 'formik';
-import React from 'react';
+import React, { useState } from 'react';
 import './Regirster.css';
 import * as Yup from 'yup'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 export default function Regirster() {
-async function callRegister(reqBody){
-  console.log(reqBody)
-let {data}= await axios.post('https://ecommerce.routemisr.com/api/v1/auth/signup'.reqBody)
+
+
+
+
+
+  let navigate = useNavigate()
+  const [errorMasseg, setErrorMassag] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+
+
+  async function callRegister(reqBody) {
+    setErrorMassag("")
+    setIsLoading(true)
+    let { data } = await axios.post(`https://ecommerce.routemisr.com/api/v1/auth/signup`, reqBody)
+      .catch(err => {
+        setIsLoading(false)
+        setErrorMassag(err.response.data.message)
+      })
+    console.log(data.message);
+
+
+    if (data.message == "success") {
+      navigate('LogIn/')
+    }
   }
 
   const validationSchema = Yup.object({
     name: Yup.string().min(3, "name is too short").max(10, "name is too long").required("name is required"),
     email: Yup.string().email("email not valid").required("email is requierd"),
-    password: Yup.string().matches(/^[A-Z][a-z0-9]{7,12}$/, "Invalid password").required("Password required"),   
-    repassword: Yup.string().oneOf([Yup.ref("password")],"password and repassword should match").required("password requierd"),
+    password: Yup.string().matches(/^[A-Z][a-z0-9]{5,10}$/, "Invalid password").required("Password required"),
+    rePassword: Yup.string().oneOf([Yup.ref('password')], "password and rePassword should match").required("password requierd"),
     phone: Yup.string().matches(/^01[0125][0-9]{8}$/, "invalid phone").required("phone required"),
 
 
@@ -24,20 +46,22 @@ let {data}= await axios.post('https://ecommerce.routemisr.com/api/v1/auth/signup
       name: '',
       email: '',
       password: '',
-      repassword: '',
+      rePassword: '',
       phone: '',
     },
     validationSchema,
-    onSubmit:callRegister
+    onSubmit: callRegister
   });
 
   return (
     <>
       <div className="w-50 mx-auto my-5">
         <h2>Regirster Now</h2>
+        {errorMasseg ? <div className='alert alert-danger'>{errorMasseg} </div> : null}
         <form onSubmit={regasterForm.handleSubmit} className=''>
           <div className="form-group">
-            <label htmlFor="fullName" className="mb-1">
+            <label htmlFor="fullName"
+              className="mb-1">
               FullName
             </label>
             <input
@@ -49,22 +73,23 @@ let {data}= await axios.post('https://ecommerce.routemisr.com/api/v1/auth/signup
               onChange={regasterForm.handleChange}
               onBlur={regasterForm.handleBlur}
             />
-            {regasterForm.errors.name && regasterForm.touched.name? <div className="alert alert-danger">{regasterForm.errors.name} </div> : null}
+            {regasterForm.errors.name && regasterForm.touched.name ? <div className="alert alert-danger">{regasterForm.errors.name} </div> : null}
           </div>
           <div className="form-group">
-            <label htmlFor="Email" className="mb-1">
+            <label htmlFor="email" className="mb-1">
               Email
             </label>
             <input
-              type="Email"
+              type="email"
               id="email"
               name="email"
               value={regasterForm.values.email}
               className="form-control"
               onChange={regasterForm.handleChange}
               onBlur={regasterForm.handleBlur}
+              autoComplete="username"
             />
-            {regasterForm.errors.email && regasterForm.touched.email? <div className="alert alert-danger" >{regasterForm.errors.email} </div> : null}
+            {regasterForm.errors.email && regasterForm.touched.email ? <div className="alert alert-danger" >{regasterForm.errors.email} </div> : null}
           </div>
           <div className="form-group">
             <label htmlFor="password" className="mb-1">
@@ -78,23 +103,25 @@ let {data}= await axios.post('https://ecommerce.routemisr.com/api/v1/auth/signup
               className="form-control"
               onChange={regasterForm.handleChange}
               onBlur={regasterForm.handleBlur}
+              autoComplete="password"
             />
-            {regasterForm.errors.password && regasterForm.touched.password? <div className="alert alert-danger">{regasterForm.errors.password} </div> : null}
+            {regasterForm.errors.password && regasterForm.touched.password ? <div className="alert alert-danger">{regasterForm.errors.password} </div> : null}
           </div>
           <div className="form-group">
-            <label htmlFor="repassword" className="mb-1">
-              repassword
+            <label htmlFor="rePassword" className="mb-1">
+              rePassword
             </label>
             <input
               type="password"
-              id="repassword"
-              name="repassword"
-              value={regasterForm.values.repassword}
+              id="rePassword"
+              name="rePassword"
+              value={regasterForm.values.rePassword}
               className="form-control"
               onChange={regasterForm.handleChange}
               onBlur={regasterForm.handleBlur}
+              autoComplete="new-password"
             />
-            {regasterForm.errors.repassword && regasterForm.touched.repassword? <div className="alert alert-danger" >{regasterForm.errors.repassword} </div> : null}
+            {regasterForm.errors.rePassword && regasterForm.touched.rePassword ? <div className="alert alert-danger" >{regasterForm.errors.rePassword} </div> : null}
           </div>
           <div className="form-group">
             <label htmlFor="phone" className="mb-1">
@@ -111,8 +138,10 @@ let {data}= await axios.post('https://ecommerce.routemisr.com/api/v1/auth/signup
             />
             {regasterForm.errors.phone && regasterForm.touched.phone ? <div className="alert alert-danger" >{regasterForm.errors.phone} </div> : null}
           </div>
-          <button className="d-block ms-auto btn bg-main text-white">
-            Register
+          <button className="d-block ms-auto btn bg-main text-white mt-3">
+            {isLoading ? <i className='fa fa-spinner fa-spin'></i>:'Regirster'}
+
+     
           </button>
         </form>
       </div>
