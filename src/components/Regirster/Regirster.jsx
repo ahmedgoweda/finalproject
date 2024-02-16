@@ -27,7 +27,7 @@ export default function Regirster() {
 
 
     if (data.message == "success") {
-      navigate('LogIn/')
+      navigate('/LogIn')
     }
   }
 
@@ -138,7 +138,7 @@ export default function Regirster() {
             />
             {regasterForm.errors.phone && regasterForm.touched.phone ? <div className="alert alert-danger" >{regasterForm.errors.phone} </div> : null}
           </div>
-          <button className="d-block ms-auto btn bg-main text-white mt-3">
+          <button className="d-block ms-auto btn bg-main text-white mt-3" disabled={!(regasterForm.isValid && regasterForm.dirty)}>
             {isLoading ? <i className='fa fa-spinner fa-spin'></i>:'Regirster'}
 
      

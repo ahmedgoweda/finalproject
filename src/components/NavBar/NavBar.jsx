@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './NavBar.css';
 import { Link } from 'react-router-dom';
 import logo from '../../Assets/images/freshcart-logo.svg';
+import { CounterContext } from '../../context/Counter';
+import { TokenContext } from '../../context/Token';  
 
 export default function Navbar() {
-  return (
-    <>
+let {counter}=useContext(CounterContext)
+let {token}=useContext(TokenContext)
+ 
+ console.log(counter)
+
+
+  return (<>
+ 
+
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container">
           <Link className="navbar-brand" to="/">
@@ -42,6 +51,11 @@ export default function Navbar() {
               <li className="nav-item">
                 <Link className="nav-link" to="/brands">
                   Brands
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/Cart">
+                  cart
                 </Link>
               </li>
             </ul>

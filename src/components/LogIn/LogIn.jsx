@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './LogIn.css';
 import { useNavigate } from 'react-router-dom'
 import * as Yup from "yup"
 import axios from 'axios';
 import { useFormik } from 'formik';
+import { TokenContext } from '../../context/Token';
 
 export default function Login() {
 
@@ -11,18 +12,20 @@ export default function Login() {
   const [errorMasseg, setErrorMassag] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
-  
+  let {setToken}=useContext(TokenContext)
   async function callLogin(reqBody) {
    setErrorMassag("")
    setIsLoading(true)
-    let { data } = await axios.post('https://ecommerce.routemisr.com/api/v1/auth/signup', reqBody)
+    let { data } = await axios.post('https://ecommerce.routemisr.com/api/v1/auth/signin', reqBody)
       .catch(err => {
         setIsLoading(false)
         setErrorMassag(err.response.data.message)})
 
-
-    if (data.message === "success") {
-      navigate('Home/')
+localStorage.setItem("userToken",data.token)
+    if (data.message =="success") {
+      localStorage.setItem("userToken",data.token)
+      // setToken  
+      navigate('/home')
     }
   }
 
@@ -80,10 +83,10 @@ export default function Login() {
             />
             {LoginForm.errors.password && LoginForm.touched.password ? <div className="alert alert-danger">{LoginForm.errors.password} </div> : null}
           </div>
-          <button type="submit" className="d-block ms-auto btn bg-main text-white">
+          <button  className="d-block ms-auto btn bg-main text-white mt-3 ">
             {isLoading ? <i className='fa fa-spinner fa-spin'></i> : 'login'}
 
-            Register
+          
           </button>
         </form>
       </div>

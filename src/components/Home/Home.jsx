@@ -1,11 +1,15 @@
 import React from 'react';
 import './Home.css';
-
+import Cart from '../Cart/Cart';
+import Products from '../Products/Products';
+import Categories from '../Categories/Categories'
 export default function Home() {
-  return (
-    <>
-      <h1 className="Home">Home</h1>
-      <button className="btn bg-main text-white">Hi</button>
+  return  <>
+
+     <Cart/>
+ <Products/>
+<Categories/>
+
     </>
-  );
+  
 }

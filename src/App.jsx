@@ -9,6 +9,7 @@ import Layout from './components/LayOut/LayOut'
 import Regirster from './components/Regirster/Regirster';
 import Login from './components/LogIn/LogIn';
 import NotFound  from './components/NotFound/NotFound';
+import TokenContextProvider from './context/Token';
 
 let routes = createBrowserRouter([
   { path: '/', element: <Layout />, children: [
@@ -24,7 +25,14 @@ let routes = createBrowserRouter([
 ])
 
 function App() {
-  return <RouterProvider router={routes}></RouterProvider>
-}
+  return<RouterProvider router={routes}></RouterProvider>
+
+  
+
+ 
+  
+} 
+  
+ 
 
 export default App;
