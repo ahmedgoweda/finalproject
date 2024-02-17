@@ -7,7 +7,7 @@ export default function TokenContextProvider(propes){
 const [token,setToken]=useState(null)
 
 return <TokenContext.Provider value={{token,setToken}}>
-{ propes.children}
+{propes.children}
 
 </TokenContext.Provider>
 

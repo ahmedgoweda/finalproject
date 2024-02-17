@@ -9,7 +9,7 @@ export default function Navbar() {
 let {counter}=useContext(CounterContext)
 let {token}=useContext(TokenContext)
  
- console.log(counter)
+
 
 
   return (<>
