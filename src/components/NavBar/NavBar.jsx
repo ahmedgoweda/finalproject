@@ -2,19 +2,15 @@ import React, { useContext } from 'react';
 import './NavBar.css';
 import { Link } from 'react-router-dom';
 import logo from '../../Assets/images/freshcart-logo.svg';
-import { CounterContext } from '../../context/Counter';
-import { TokenContext } from '../../context/Token';  
+// import { CounterContext } from '../../context/Counter';
+// import { TokenContext } from '../../context/Token';
 
 export default function Navbar() {
-let {counter}=useContext(CounterContext)
-let {token}=useContext(TokenContext)
- 
+  // let {counter}=useContext(CounterContext)
+  // let {token}=useContext(TokenContext)
 
-
-
-  return (<>
- 
-
+  return (
+    <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container">
           <Link className="navbar-brand" to="/">

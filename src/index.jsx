@@ -6,21 +6,9 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import TokenContextProvider from './context/Token';
-import CounterContextProvider from './context/Counter';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-
-
-<React.StrictMode>
-<CounterContextProvider>
-<TokenContextProvider>
-    <App/>
-</TokenContextProvider>
-</CounterContextProvider>
-  </React.StrictMode>
-);
+root.render(<App />);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
