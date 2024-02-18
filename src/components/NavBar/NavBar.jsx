@@ -1,13 +1,25 @@
 import React, { useContext } from 'react';
 import './NavBar.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../Assets/images/freshcart-logo.svg';
-// import { CounterContext } from '../../context/Counter';
-// import { TokenContext } from '../../context/Token';
+import { TokenContext } from '../../context/Token';
+import { CounterContext } from '../../context/Counter';
+import Login from '../LogIn/LogIn';
+
 
 export default function Navbar() {
-  // let {counter}=useContext(CounterContext)
-  // let {token}=useContext(TokenContext)
+  let { counter } = useContext(CounterContext)
+  let { token,setToken } = useContext(TokenContext)
+console.log(token);
+let navigate=useNavigate ()
+
+function logOut(){
+  localStorage.removeItem("userToken")
+  setToken(null); 
+navigate("/logIn")
+}
+
+
 
   return (
     <>
@@ -28,7 +40,7 @@ export default function Navbar() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            {token ? <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link className="nav-link" to="/">
                   Home
@@ -54,7 +66,8 @@ export default function Navbar() {
                   cart
                 </Link>
               </li>
-            </ul>
+            </ul> : null}
+
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item d-flex align-items-center">
                 <i className="fab mx-2 fa-facebook"></i>
@@ -63,19 +76,23 @@ export default function Navbar() {
                 <i className="fab mx-2 fa-youtube"></i>
                 <i className="fab mx-2 fa-tiktok"></i>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/login">
-                  Login
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/register">
-                  Register
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link">Logout</Link>
-              </li>
+              {token ? <li className="nav-item">
+                <button className="nav-link" onClick={logOut}>Logout</button>
+            </li>
+                :<>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/login">
+                      Login
+                    </Link>
+                  </li>
+
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/register">
+                      Register
+                    </Link>
+                  </li>
+                </>}
+
             </ul>
           </div>
         </div>

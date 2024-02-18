@@ -4,12 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { useFormik } from 'formik';
+import { TokenContext } from '../../context/Token';
 
 export default function Login() {
   let navigate = useNavigate();
   const [errorMasseg, setErrorMassag] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  let {setToken}=useContext(TokenContext)
 
+  
   async function callLogin(reqBody) {
     setErrorMassag('');
     setIsLoading(true);
@@ -20,10 +23,10 @@ export default function Login() {
         setErrorMassag(err.response.data.message);
       });
 
-    localStorage.setItem('userToken', data.token);
+  
     if (data.message == 'success') {
       localStorage.setItem('userToken', data.token);
-      // setToken
+      setToken(data.token)
       navigate('/home');
     }
   }

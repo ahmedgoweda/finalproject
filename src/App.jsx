@@ -1,5 +1,5 @@
 import './App.css';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { Router, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Home from './components/Home/Home';
 import Products from './components/Products/Products';
 import Cart from './components/Cart/Cart';
@@ -9,11 +9,17 @@ import Layout from './components/LayOut/LayOut';
 import Regirster from './components/Regirster/Regirster';
 import Login from './components/LogIn/LogIn';
 import NotFound from './components/NotFound/NotFound';
-import TokenContextProvider from './context/Token';
+import TokenContextProvider, { TokenContext } from './context/Token';
 import CounterContextProvider from './context/Counter';
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 
-let routes = createBrowserRouter([
+
+function App() {
+
+let {setToken}=useContext(TokenContext)
+
+
+const routes = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
@@ -30,14 +36,15 @@ let routes = createBrowserRouter([
   },
 ]);
 
-function App() {
-  return (
-    <CounterContextProvider>
-      <TokenContextProvider>
-        <RouterProvider router={routes}></RouterProvider>
-      </TokenContextProvider>
-    </CounterContextProvider>
-  );
+useEffect(()=>{
+  if (localStorage.getItem("userToken")!=null){
+setToken(localStorage.getItem("userToken"))
+  }
+},
+[])
+
+  return <RouterProvider router={routes}></RouterProvider>
+  
 }
 
 export default App;
