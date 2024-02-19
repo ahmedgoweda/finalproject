@@ -4,6 +4,7 @@ import './Regirster.css';
 import * as Yup from 'yup'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 export default function Regirster() {
 
 
@@ -55,6 +56,10 @@ export default function Regirster() {
 
   return (
     <>
+     <Helmet>
+            <title>register page </title>
+        </Helmet>
+
       <div className="w-50 mx-auto my-5">
         <h2>Regirster Now</h2>
         {errorMasseg ? <div className='alert alert-danger'>{errorMasseg} </div> : null}

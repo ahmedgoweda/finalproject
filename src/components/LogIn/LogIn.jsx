@@ -5,8 +5,13 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import { useFormik } from 'formik';
 import { TokenContext } from '../../context/Token';
+import { Helmet } from 'react-helmet';
 
 export default function Login() {
+  <Helmet>
+  <title>Login page </title>
+</Helmet>
+
   let navigate = useNavigate();
   const [errorMasseg, setErrorMassag] = useState('');
   const [isLoading, setIsLoading] = useState(false);

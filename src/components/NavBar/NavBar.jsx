@@ -9,15 +9,15 @@ import Login from '../LogIn/LogIn';
 
 export default function Navbar() {
   let { counter } = useContext(CounterContext)
-  let { token,setToken } = useContext(TokenContext)
-console.log(token);
-let navigate=useNavigate ()
+  let { token, setToken } = useContext(TokenContext)
+  console.log(token);
+  let navigate = useNavigate()
 
-function logOut(){
-  localStorage.removeItem("userToken")
-  setToken(null); 
-navigate("/logIn")
-}
+  function logOut() {
+    localStorage.removeItem("userToken")
+    setToken(null);
+    navigate("/logIn")
+  }
 
 
 
@@ -78,8 +78,8 @@ navigate("/logIn")
               </li>
               {token ? <li className="nav-item">
                 <button className="nav-link" onClick={logOut}>Logout</button>
-            </li>
-                :<>
+              </li>
+                : <>
                   <li className="nav-item">
                     <Link className="nav-link" to="/login">
                       Login

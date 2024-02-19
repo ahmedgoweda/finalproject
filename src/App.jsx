@@ -16,35 +16,35 @@ import React, { useContext, useEffect } from 'react';
 
 function App() {
 
-let {setToken}=useContext(TokenContext)
+  let { setToken } = useContext(TokenContext)
 
 
-const routes = createBrowserRouter([
-  {
-    path: '/',
-    element: <Layout />,
-    children: [
-      { index: true, element: <Home /> },
-      { path: 'Products', element: <Products /> },
-      { path: 'Cart', element: <Cart /> },
-      { path: 'Categories', element: <Categories /> },
-      { path: 'Brands', element: <Brands /> },
-      { path: 'Login', element: <Login /> },
-      { path: 'Register', element: <Regirster /> },
-      { path: '*', element: <NotFound /> },
-    ],
+  const routes = createBrowserRouter([
+    {
+      path: '/',
+      element: <Layout />,
+      children: [
+        { index: true, element:<Home />},
+        { path: 'Products', element: <Products /> },
+        { path: 'Cart', element: <Cart /> },
+        { path: 'Categories', element: <Categories /> },
+        { path: 'Brands', element: <Brands /> },
+        { path: 'Login', element: <Login /> },
+        { path: 'Register', element: <Regirster /> },
+        { path: '*', element: <NotFound /> },
+      ],
+    },
+  ]);
+
+  useEffect(() => {
+    if (localStorage.getItem("userToken") != null) {
+      setToken(localStorage.getItem("userToken"))
+    }
   },
-]);
-
-useEffect(()=>{
-  if (localStorage.getItem("userToken")!=null){
-setToken(localStorage.getItem("userToken"))
-  }
-},
-[])
+    [])
 
   return <RouterProvider router={routes}></RouterProvider>
-  
+
 }
 
 export default App;
