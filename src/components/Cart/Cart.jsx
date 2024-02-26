@@ -3,6 +3,7 @@ import './Cart.css';
 import { Helmet } from 'react-helmet';
 
 export default function Cart() {
+  
   return (
     <>
 
@@ -11,7 +12,7 @@ export default function Cart() {
         <title>Cart page </title>
       </Helmet>
 
-      <h1>Cart</h1>
+     
     </>
   );
 }

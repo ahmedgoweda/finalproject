@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useQuery } from 'react-query';
 import { ThreeCircles } from 'react-loader-spinner';
-import slider from 'react-slick/lib/slider';
 import Slider from 'react-slick/lib/slider';
 export default function ProductDetails() {
 

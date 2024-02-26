@@ -11,20 +11,20 @@ import reportWebVitals from './reportWebVitals';
 import CounterContextProvider from './context/Counter';
 import TokenContextProvider from './context/Token';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import CartContextProvide from './context/cartContaxt';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const queryClient = new QueryClient();
 root.render(
 
-
-    <QueryClientProvider client={queryClient} >
-        <CounterContextProvider>
-            <TokenContextProvider>
-                <App />
-            </TokenContextProvider>
-        </CounterContextProvider>
-    </QueryClientProvider>
-
-
+    <CartContextProvide>
+        <QueryClientProvider client={queryClient} >
+            <CounterContextProvider>
+                <TokenContextProvider>
+                    <App />
+                </TokenContextProvider>
+            </CounterContextProvider>
+        </QueryClientProvider>
+     </CartContextProvide> 
 );
 
 // If you want to start measuring performance in your app, pass a function

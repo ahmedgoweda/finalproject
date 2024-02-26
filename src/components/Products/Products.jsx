@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import './Products.css';
 import { Helmet } from 'react-helmet';
 import axios from 'axios'
@@ -8,6 +8,13 @@ import { Link } from 'react-router-dom';
 export default function Products() {
   const [allProducts, setAllProducts] = useState([])
   const [isLoding,setIsLoding]=useState(true)
+  let {addToCart}=useContext(createContext)
+        // goz2 el cart
+
+ 
+//   in the button 
+
+   
   async function getAllProducts() {
     let { data } = await axios.get(`https://ecommerce.routemisr.com/api/v1/products`)
     console.log(data);
@@ -17,6 +24,10 @@ export default function Products() {
   useEffect(() => {
     getAllProducts()
   },[])
+
+
+
+   
 
   return (
     <>
@@ -50,7 +61,7 @@ export default function Products() {
                 </div>
                 </Link>
 
-                <button className='btn bg-main text-white w-100'> Add to cart</button>
+                <button onClick={()=>addToCart(ele.id)} className='btn bg-main text-white w-100'> Add to cart</button>
               </div>
             </div>
           )}
