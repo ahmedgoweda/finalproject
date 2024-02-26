@@ -1,10 +1,10 @@
 import React from 'react';
 import './Categories.css';
+import CategoriesSlider from '../CategoriesSlider/CategoriesSlider';
 
 export default function Categories() {
   return (
-    <>
-      <h1>Categories</h1>
-    </>
+    
+              <CategoriesSlider />
   );
 }

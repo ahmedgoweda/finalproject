@@ -12,6 +12,7 @@ import NotFound from './components/NotFound/NotFound';
 import TokenContextProvider, { TokenContext } from './context/Token';
 import CounterContextProvider from './context/Counter';
 import React, { useContext, useEffect } from 'react';
+import ProductDetails from './components/ProductDetails/ProductDetails';
 
 
 function App() {
@@ -25,12 +26,14 @@ function App() {
       element: <Layout />,
       children: [
         { index: true, element:<Home />},
-        { path: 'Products', element: <Products /> },
-        { path: 'Cart', element: <Cart /> },
-        { path: 'Categories', element: <Categories /> },
-        { path: 'Brands', element: <Brands /> },
-        { path: 'Login', element: <Login /> },
-        { path: 'Register', element: <Regirster /> },
+        { path: 'products', element: <Products /> },
+        { path: 'cart', element: <Cart /> },
+        { path: 'categories', element: <Categories /> },
+        { path: 'brands', element: <Brands /> },
+        { path: 'login', element: <Login /> },
+        { path: 'register', element: <Regirster /> },
+        { path: 'details/:id', element: <ProductDetails /> },
+
         { path: '*', element: <NotFound /> },
       ],
     },
@@ -40,8 +43,7 @@ function App() {
     if (localStorage.getItem("userToken") != null) {
       setToken(localStorage.getItem("userToken"))
     }
-  },
-    [])
+  },[])
 
   return <RouterProvider router={routes}></RouterProvider>
 

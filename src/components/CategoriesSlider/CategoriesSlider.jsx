@@ -1,6 +1,8 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Slider from 'react-slick';
+import { useQuery } from 'react-query';
+
 export default function CategoriesSlider() {
     let settings = {
         dots: true,
@@ -12,26 +14,37 @@ export default function CategoriesSlider() {
 
 
     const [categories, setCategories] = useState([])
-    async function getCategories() {
-        let { data } = await axios.get(`https://ecommerce.routemisr.com/api/v1/categories`)
-        setCategories(data.data)
-
+     async function getCategories() {
+       return  await axios.get(`https://ecommerce.routemisr.com/api/v1/categories`)
     }
-    useEffect(() => {
-        getCategories()
-
-
-
-    }, [])
+    let {data} = useQuery('categories',getCategories)
+    
+    useEffect(()=>{
+        
+        if(data){
+            console.log(data.data);
+    
+            setCategories(data.data.data)
+        }
+    },[data])
 
     return (
         <div className="container my-4">
-            <h2>shoo popular Cateagorise</h2>
+            <div >
+              <p>show popular Cateagorise</p>  
+            </div>
+            
             <Slider {...settings}>
-                {categories.map(cat=>   <div className='items px-3'>
-                <img src={cat.image} className='w-50' height={'100'} alt="" />
-                <h5>{cat.name}</h5>
-            </div>)}
+                {
+            categories?(
+
+                categories.map(cat=><div className='items px-3' key={cat._id}>
+                <img src={cat.image} className='w-75' height={'100'} alt="" />
+                <h5 className=''>{cat.name}</h5>
+              
+            
+            </div>)):null
+            }
 
             </Slider>
          

@@ -9,7 +9,7 @@ export default function NotFound() {
 
   return <>
 <div className="container">
-   <img src={error} alt="error" className='w-50 ' />
+   <img src={error} alt="error" className='w-50 text-center' />
 </div>
  
   
