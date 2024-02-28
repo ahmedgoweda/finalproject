@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './ProductDetails.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useQuery } from 'react-query';
 import { ThreeCircles } from 'react-loader-spinner';
 import Slider from 'react-slick/lib/slider';
+import { CartContext } from '../../context/cartContaxt';
+import toast, { Toaster } from 'react-hot-toast';
+
 export default function ProductDetails() {
 
-
+  let { addToCart } = useContext(CartContext)
   let settings = {
     dots: true,
     infinite: true,
@@ -27,6 +30,16 @@ export default function ProductDetails() {
 
 
   }
+  async function addCart(id) {
+    let res = await addToCart(id)
+    if (res.data.status == "success") {
+      toast.success("product add successfully");
+    } else {
+      toast.error("product not add")
+    }
+  }
+
+
   console.log(params.id);
   const { data, isError, isLoading } = useQuery('details', () => getProductDetail(params.id))
   useEffect(() => {
@@ -58,13 +71,9 @@ export default function ProductDetails() {
 
 
             <Slider {...settings}>
-              {details.images.map(imgSrc=>{
+              {details.images.map(imgSrc => {
                 return <img src={imgSrc} className='w-75' alt="" />
               })}
-              
-            
-
-
             </Slider>
           </div>
           <div className="col-md-8">
@@ -75,6 +84,7 @@ export default function ProductDetails() {
               <h5>{details.price} EGP </h5>
               <h5><i className='fa fa-star rating-color' ></i>{details.ratingsAverage}</h5>
             </div>
+            <button onClick={() => addCart(details.id)} className='btn bg-main text-white w-100'> Add to cart</button>
           </div>
         </div>
       </div>
