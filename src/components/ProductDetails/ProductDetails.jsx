@@ -62,8 +62,7 @@ export default function ProductDetails() {
           color="#4fa94d"
           ariaLabel="three-circles-loading"
           wrapperStyle={{}}
-          wrapperClass="justify-content-center"
-        >
+          wrapperClass="justify-content-center">
           loading...
         </ThreeCircles>
         <div className="row align-items-center">
