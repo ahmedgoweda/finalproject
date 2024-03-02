@@ -9,7 +9,7 @@ import { CartContext } from '../../context/cartContaxt';
 export default function Products() {
   const [allProducts, setAllProducts] = useState([])
   const [isLoding, setIsLoding] = useState(true)
-  let { addToCart } = useContext(CartContext)
+  let { addToCart ,setNumOfCartItems} = useContext(CartContext)
 
 
   async function getAllProducts() {
@@ -27,6 +27,7 @@ export default function Products() {
     let res = await addToCart(id)
     if (res.data.status == "success") {
       toast.success("product add successfully");
+      setNumOfCartItems(res.data.numOfCartItems);
     } else {
       toast.error("product not add")
     }

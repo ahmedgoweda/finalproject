@@ -10,7 +10,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 export default function ProductDetails() {
 
-  let { addToCart } = useContext(CartContext)
+  let { addToCart ,setNumOfCartItems} = useContext(CartContext)
   let settings = {
     dots: true,
     infinite: true,
@@ -26,6 +26,7 @@ export default function ProductDetails() {
     if (id) {
       console.log(id);
       return axios.get(`https://ecommerce.routemisr.com/api/v1/products/${id}`)
+      
     }
 
 
@@ -34,6 +35,7 @@ export default function ProductDetails() {
     let res = await addToCart(id)
     if (res.data.status == "success") {
       toast.success("product add successfully");
+      setNumOfCartItems(res.data.numOfCartItems);
     } else {
       toast.error("product not add")
     }
