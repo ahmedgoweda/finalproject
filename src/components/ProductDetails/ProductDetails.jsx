@@ -25,11 +25,8 @@ export default function ProductDetails() {
   async function getProductDetail(id) {
     if (id) {
       console.log(id);
-      return axios.get(`https://ecommerce.routemisr.com/api/v1/products/${id}`)
-      
+      return axios.get(`https://ecommerce.routemisr.com/api/v1/products/${id}`) 
     }
-
-
   }
   async function addCart(id) {
     let res = await addToCart(id)
@@ -40,7 +37,6 @@ export default function ProductDetails() {
       toast.error("product not add")
     }
   }
-
 
   console.log(params.id);
   const { data, isError, isLoading } = useQuery('details', () => getProductDetail(params.id))
@@ -69,8 +65,6 @@ export default function ProductDetails() {
         </ThreeCircles>
         <div className="row align-items-center">
           <div className="col-md-4 mb-4">
-
-
             <Slider {...settings}>
               {details.images.map(imgSrc => {
                 return <img src={imgSrc} className='w-75' alt="" />

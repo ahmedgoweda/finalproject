@@ -5,19 +5,21 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import { useFormik } from 'formik';
 import { TokenContext } from '../../context/Token';
+import ForgotPassword from '../forgotPasswrod/forgotPasswrod';
 import { Helmet } from 'react-helmet';
 
 export default function Login() {
   <Helmet>
-  <title>Login page </title>
-</Helmet>
+    <title>Login page </title>
+  </Helmet>
 
+let [ForgotPassword]=useState('')
   let navigate = useNavigate();
   const [errorMasseg, setErrorMassag] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  let {setToken}=useContext(TokenContext)
+  let { setToken } = useContext(TokenContext)
 
-  
+
   async function callLogin(reqBody) {
     setErrorMassag('');
     setIsLoading(true);
@@ -28,7 +30,7 @@ export default function Login() {
         setErrorMassag(err.response.data.message);
       });
 
-  
+
     if (data.message == 'success') {
       localStorage.setItem('userToken', data.token);
       setToken(data.token)
@@ -100,9 +102,13 @@ export default function Login() {
               </div>
             ) : null}
           </div>
-          <button className="d-block ms-auto btn bg-main text-white mt-3 ">
-            {isLoading ? <i className="fa fa-spinner fa-spin"></i> : 'login'}
-          </button>
+          <div className='d-flex' >
+            <button className="d-block ms-auto btn bg-main text-white mt-3 ">
+              {isLoading ? <i className="fa fa-spinner fa-spin"></i> : 'login'}
+            </button>
+
+          </div>
+          {/* <button type='Submit' onSubmit={ForgotPassword} className="d-block ms-auto btn bg-main text-white mt-3" ons>forgotPassword</button> */}
         </form>
       </div>
     </>

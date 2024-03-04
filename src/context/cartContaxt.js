@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { createContext, useEffect, useState } from "react";
 
-
 export let CartContext = createContext();
 
 let headers = {
@@ -38,36 +37,31 @@ function updateProduct(id, count) {
     })
         .then((res) => res).catch((err) => err)
 }
-
-
-
 export default function CartContextProvider(props) {
     const [CartId, setCartId] = useState(null);
     const [numOfCartItems, setNumOfCartItems] = useState(null);
 
-function onlinePaymenit(shippingAddress) {
+    function onlinePaymenit(shippingAddress) {
 
-    return axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${CartId}?url=http://localhost:3000`, {
-        shippingAddress
-    }, {
-        headers
-    })
-        .then((res) => res).catch((err) => err)
-}
-
-
-async function getinaitialCart(){
-  let {data}= await GetCart();
-  setNumOfCartItems(data?.numOfCartItems)
-  setCartId(data?.data._id)
-}
+        return axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${CartId}?url=http://localhost:3000`, {
+            shippingAddress
+        }, {
+            headers
+        })
+            .then((res) => res).catch((err) => err)
+    }
+    async function getinaitialCart() {
+        let { data } = await GetCart();
+        setNumOfCartItems(data?.numOfCartItems)
+        setCartId(data?.data._id)
+    }
 
     useEffect(() => {
         getinaitialCart();
     }, [])
 
     return <CartContext.Provider
-        value={{ addToCart, GetCart, deleteProductFromCart, updateProduct, onlinePaymenit, numOfCartItems,setNumOfCartItems }}>
+        value={{ addToCart, GetCart, deleteProductFromCart, updateProduct, onlinePaymenit, numOfCartItems, setNumOfCartItems }}>
         {props.children}
 
     </CartContext.Provider>

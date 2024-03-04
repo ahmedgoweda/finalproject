@@ -57,3 +57,7 @@ a , a:hover{
 {
     background-color: var(--light-color) !important;
 }
+
+.navcolor{
+    background-color:#032F3C ; 
+}

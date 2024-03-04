@@ -11,7 +11,7 @@ import { CartContext } from '../../context/cartContaxt';
 export default function Navbar() {
   let { counter } = useContext(CounterContext)
   let { token, setToken } = useContext(TokenContext)
-let {numOfCartItems}=useContext(CartContext)
+  let { numOfCartItems } = useContext(CartContext)
   console.log(token);
   let navigate = useNavigate()
 
@@ -20,12 +20,9 @@ let {numOfCartItems}=useContext(CartContext)
     setToken(null);
     navigate("/logIn")
   }
-
-
-
   return (
     <>
-      <nav className="navbar fixed-top navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar bg-info text-muted fixed-top navbar-expand-lg ">
         <div className="container">
           <Link className="navbar-brand" to="/login">
             <img src={logo} alt="fresh cart logo" />
@@ -63,7 +60,7 @@ let {numOfCartItems}=useContext(CartContext)
                   Brands
                 </Link>
               </li>
-             
+
             </ul> : null}
 
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -74,23 +71,23 @@ let {numOfCartItems}=useContext(CartContext)
                 <i className="fab mx-2 fa-youtube"></i>
                 <i className="fab mx-2 fa-tiktok"></i>
                 <li className="nav-item position-relative ">
-                <Link className="nav-link" to="/Cart">
-                <i className=" mx-3 fa-solid fa-cart-flatbed fs-3"></i>
-                  <span className='bg-main p-1 rounded position-absolute top-0 end-0 text-light'>{numOfCartItems}</span>
-                </Link>
-              </li>
+                  <Link className="nav-link" to="/Cart">
+                    <i className=" mx-3 fa-solid fa-cart-flatbed fs-3"></i>
+                    <span className='bg-main p-1 rounded position-absolute top-0 end-0 text-light'>{numOfCartItems}</span>
+                  </Link>
+                </li>
               </li>
               {token ? <li className="nav-item mx-2">
                 <button className="nav-link" onClick={logOut}>Logout</button>
               </li>
                 : <>
-                
+
                   <li className="nav-item">
                     <Link className="nav-link" to="/login">
                       Login
                     </Link>
                   </li>
-           
+
                   <li className="nav-item">
                     <Link className="nav-link" to="/register">
                       Register
