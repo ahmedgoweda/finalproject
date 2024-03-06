@@ -16,7 +16,7 @@ export default function MainSlider() {
     return (<>
 
         <div className="container my-5">
-            <div className="row">
+            <div className="row gx-0">
                 <div className="col-md-8">
                     <Slider {...settings}>
                         <img src={img1} alt="" />

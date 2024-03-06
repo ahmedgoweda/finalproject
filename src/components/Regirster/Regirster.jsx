@@ -7,10 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 export default function Regirster() {
 
-
-
-
-
   let navigate = useNavigate()
   const [errorMasseg, setErrorMassag] = useState('')
   const [isLoading, setIsLoading] = useState(false)

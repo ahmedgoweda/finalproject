@@ -31,16 +31,16 @@ export default function CategoriesSlider() {
     return (
         <div className="container my-4">
             <div >
-              <p>show popular Cateagorise</p>  
+              <p className='h2 text-center text-info'>show popular Cateagorise</p>  
             </div>
             
             <Slider {...settings}>
                 {
             categories?(
 
-                categories.map(cat=><div className='items px-3' key={cat._id}>
-                <img src={cat.image} className='w-75' height={'100'} alt="" />
-                <h5 className=''>{cat.name}</h5>
+                categories.map(cat=><div className='items px-3 p-3' key={cat._id}>
+                <img src={cat.image} className='w-100' height={'100'} alt="" />
+                <h5 className='p-3 h6 '>{cat.name.split(" ").slice(0, 1).join(0, 1)}</h5>
               
             
             </div>)):null

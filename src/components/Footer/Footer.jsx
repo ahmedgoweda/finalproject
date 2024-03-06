@@ -2,7 +2,7 @@ import React from 'react';
 import './Footer.css';
 export default function Footer() {
   return (
-    <footer className=" p-5 bg-dark  text-white  ">
+    <footer className=" p-5 bg-dark text-white">
       <div className='container' >
         <h2>Get the FreshCart App</h2>
         <p>we will send you a link ,open it on your phone to downlowed the app</p>

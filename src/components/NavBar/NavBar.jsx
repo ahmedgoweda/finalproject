@@ -12,7 +12,7 @@ export default function Navbar() {
   let { counter } = useContext(CounterContext)
   let { token, setToken } = useContext(TokenContext)
   let { numOfCartItems } = useContext(CartContext)
-  console.log(token);
+
   let navigate = useNavigate()
 
   function logOut() {
@@ -22,7 +22,7 @@ export default function Navbar() {
   }
   return (
     <>
-      <nav className="navbar bg-info text-muted fixed-top navbar-expand-lg ">
+      <nav className="navbar bg-info text-muted mt-1 fixed-top navbar-expand-lg container-fluid">
         <div className="container">
           <Link className="navbar-brand" to="/login">
             <img src={logo} alt="fresh cart logo" />
@@ -55,35 +55,36 @@ export default function Navbar() {
                   Categories
                 </Link>
               </li>
+
               <li className="nav-item">
                 <Link className="nav-link" to="/brands">
                   Brands
                 </Link>
               </li>
-
+              <li className="nav-item position-relative ">
+                <Link className="nav-link" to="/Cart">
+                  <i className=" mx-3 fa-solid fa-cart-flatbed fs-3"></i>
+                  <span className='bg-main p-1 rounded position-absolute top-0 end-0 text-light'>{numOfCartItems}</span>
+                </Link>
+              </li>
             </ul> : null}
 
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0 p-2">
               <li className="nav-item d-flex align-items-center">
-                <i className="fab mx-2 fa-facebook"></i>
-                <i className="fab mx-2 fa-twitter"></i>
-                <i className="fab mx-2 fa-instagram"></i>
-                <i className="fab mx-2 fa-youtube"></i>
-                <i className="fab mx-2 fa-tiktok"></i>
-                <li className="nav-item position-relative ">
-                  <Link className="nav-link" to="/Cart">
-                    <i className=" mx-3 fa-solid fa-cart-flatbed fs-3"></i>
-                    <span className='bg-main p-1 rounded position-absolute top-0 end-0 text-light'>{numOfCartItems}</span>
-                  </Link>
-                </li>
+                <i className="fab mx-2 fa-facebook iconcolor h3"></i>
+                <i className="fab mx-2 fa-twitter bg-white rounded-circle text-info h3"></i>
+                <i className="fab mx-2 fa-instagram h3 instacolor "></i>
+                <i className="fab mx-2 fa-youtube h3 text-danger"></i>
+                <i className="fab mx-2 fa-tiktok h3  text-black rounded-circle "></i>
+
               </li>
               {token ? <li className="nav-item mx-2">
-                <button className="nav-link" onClick={logOut}>Logout</button>
+                <button className="nav-link rounded-pill bg-" onClick={logOut}>Logout</button>
               </li>
                 : <>
 
                   <li className="nav-item">
-                    <Link className="nav-link" to="/login">
+                    <Link className="nav-link " to="/login">
                       Login
                     </Link>
                   </li>
