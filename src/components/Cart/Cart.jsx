@@ -69,12 +69,6 @@ export default function Cart() {
           <Link className='btn bg-main w-100 my-5 text-white' to= {"/checkout"} >Checkout</Link>
         </div>
       </div>
-
-
-
-    
-
-
         : <ThreeCircles
           visible={isLoding}
           height="100"
@@ -85,8 +79,6 @@ export default function Cart() {
           wrapperClass="justify-content-center">
           loading...
         </ThreeCircles>}
-
-
     </>
   );
 }

@@ -9,7 +9,7 @@ import { CartContext } from '../../context/cartContaxt';
 export default function Products() {
   const [allProducts, setAllProducts] = useState([])
   const [isLoding, setIsLoding] = useState(true)
-  let { addToCart ,setNumOfCartItems} = useContext(CartContext)
+  let { addToCart, setNumOfCartItems } = useContext(CartContext)
 
 
   async function getAllProducts() {
@@ -26,17 +26,20 @@ export default function Products() {
   async function addCart(id) {
     let res = await addToCart(id)
     if (res.data.status === "success") {
-      toast.success("product add successfully");
+      toast.success("product add successfully" );
       setNumOfCartItems(res.data.numOfCartItems);
     } else {
       toast.error("product not add")
     }
+
   }
-
-
-
+    <Toaster
+  position="top-right"
+  reverseOrder={false}
+/>
   return (
     <>
+
       <Helmet><title>Products page</title></Helmet>
       <div className="container py-5">
         <ThreeCircles
@@ -52,14 +55,14 @@ export default function Products() {
         </ThreeCircles>
         <div className="row">
           {allProducts.map((ele) =>
-            <div className="col-md-2" key={ele._id}>
+            <div className="col-md-2 g-3" key={ele._id}>
               <div className="product px-2 py-3">
                 <Link to={`/details/${ele._id}`}>
                   <img src={ele.imageCover} className='w-100' alt="" />
                   <p className='text-main'>{ele.category.name}</p>
                   <h3 className='h6'>{ele.title.split(" ").slice(1, 3).join(0, 3)}</h3>
                   <div className="d-felex justify-content-between">
-                    <p>{ele.price} EGP</p>
+                    <p >{ele.price} EGP</p>
                     <p>
                       <i className='fa fa-star rating-color'></i>
                       {ele.ratingsAverage}

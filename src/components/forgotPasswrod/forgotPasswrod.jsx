@@ -4,8 +4,12 @@ import { useNavigate } from 'react-router-dom';
 
 async function ForgotPassword() {
   const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false)
+
   let navigate = useNavigate();
+
   const handleSubmit = async (e) => {
+    setIsLoading(true)
     e.preventDefault();
     navigate('/');
     try {
@@ -17,10 +21,8 @@ async function ForgotPassword() {
         },
         body: JSON.stringify({ email }),
       });
-       
-
       if (response.ok) {
-        
+
         alert('Password reset email sent!');
       } else {
         const data = await response.json();
@@ -45,6 +47,7 @@ async function ForgotPassword() {
           />
         </div>
         <button type="submit">Reset Password</button>
+        {isLoading ? <i className='fa fa-spinner fa-spin'></i>:'Reset Password'}
       </form>
     </div>
   );
