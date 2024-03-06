@@ -8,11 +8,9 @@ function ForgotPassword() {
   let navigate = useNavigate();
   const handleSubmit = async (e) => {
     console.log(e);
-    // return;
-    // e.preventDefault();
-    // navigate('/');
+
     try {
-      // Send a request to your backend to handle the password reset
+
       const response = await fetch(
         'https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords',
         {
@@ -25,7 +23,7 @@ function ForgotPassword() {
       );
       console.log(response);
       if (response.ok) {
-        // alert('Password reset email sent!');
+        alert('Password reset email sent!');
         setSuccess('Reset code sent,please check your mail');
         navigate('/verifyCode');
       } else {

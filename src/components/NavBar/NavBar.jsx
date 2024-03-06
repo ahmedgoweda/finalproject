@@ -76,21 +76,19 @@ export default function Navbar() {
                 <i className="fab mx-2 fa-instagram h3 instacolor "></i>
                 <i className="fab mx-2 fa-youtube h3 text-danger"></i>
                 <i className="fab mx-2 fa-tiktok h3  text-black rounded-circle "></i>
-
               </li>
               {token ? <li className="nav-item mx-2">
-                <button className="nav-link rounded-pill bg-" onClick={logOut}>Logout</button>
+                <button className="nav-link rounded-pill bg-main text-white px-3" onClick={logOut}>Logout</button>
               </li>
                 : <>
-
                   <li className="nav-item">
-                    <Link className="nav-link " to="/login">
+                    <Link className="nav-link rounded-pill bg-main text-white px-3 " to="/login">
                       Login
                     </Link>
                   </li>
 
                   <li className="nav-item">
-                    <Link className="nav-link" to="/register">
+                    <Link className="nav-link rounded-pill bg-primary text-white mx-2" to="/register">
                       Register
                     </Link>
                   </li>
