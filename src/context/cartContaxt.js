@@ -50,18 +50,24 @@ export default function CartContextProvider(props) {
         })
             .then((res) => res).catch((err) => err)
     }
-    async function getinaitialCart() {
-        let { data } = await GetCart();
-        setNumOfCartItems(data?.numOfCartItems)
-        setCartId(data?.data._id)
+    
+    // async function getinaitialCart() {
+    //     let { data } = await GetCart();
+    //     setNumOfCartItems(data?.numOfCartItems)
+    //     setCartId(data?.data._id)
+    // }
+
+    function setCartInfo({numOfCartItems,id}){
+         setNumOfCartItems(numOfCartItems)
+        setCartId(id)
     }
 
-    useEffect(() => {
-        getinaitialCart();
-    }, [])
+    // useEffect(() => {
+    //     getinaitialCart();
+    // }, [])
 
     return <CartContext.Provider
-        value={{ addToCart, GetCart, deleteProductFromCart, updateProduct, onlinePaymenit, numOfCartItems, setNumOfCartItems }}>
+        value={{ addToCart, GetCart, deleteProductFromCart, updateProduct, onlinePaymenit, numOfCartItems, setNumOfCartItems,setCartInfo }}>
         {props.children}
 
     </CartContext.Provider>
