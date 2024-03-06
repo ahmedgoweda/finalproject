@@ -16,10 +16,12 @@ import React, { useContext, useEffect } from 'react';
 import ProductDetails from './components/ProductDetails/ProductDetails';
 import ProtectedRoutes from './components/protectedRoutes/protectedRoutes';
 import AllOrders from './components/AllOrders/AllOrders';
-
+import ForgotPassword from './components/ResetPassword/forgotPasswrod/forgotPasswrod';
+import VerifyCode from './components/ResetPassword/VerifyResetCode/VerifyCode';
+import UpdatePassword from './components/ResetPassword/SetNewPassword/UpdatePassword';
 
 function App() {
-  let { setToken } = useContext(TokenContext)
+  let { setToken } = useContext(TokenContext);
   const routes = createBrowserRouter([
     {
       path: '/',
@@ -27,28 +29,82 @@ function App() {
       children: [
         { index: true, element: <Home /> },
         { path: 'Home', element: <ProtectedRoutes> </ProtectedRoutes> },
-        { path: 'products', element: <ProtectedRoutes><Products /> </ProtectedRoutes> },
-        { path: 'cart', element: <ProtectedRoutes><Cart /> </ProtectedRoutes> },
-        { path: 'categories', element: <ProtectedRoutes><Categories /></ProtectedRoutes> },
-        { path: 'brands', element: <ProtectedRoutes><Brands /> </ProtectedRoutes> },
-        { path: 'AllOrders', element: <ProtectedRoutes><AllOrders /> </ProtectedRoutes> },
+        {
+          path: 'products',
+          element: (
+            <ProtectedRoutes>
+              <Products />{' '}
+            </ProtectedRoutes>
+          ),
+        },
+        {
+          path: 'cart',
+          element: (
+            <ProtectedRoutes>
+              <Cart />{' '}
+            </ProtectedRoutes>
+          ),
+        },
+        {
+          path: 'categories',
+          element: (
+            <ProtectedRoutes>
+              <Categories />
+            </ProtectedRoutes>
+          ),
+        },
+        {
+          path: 'brands',
+          element: (
+            <ProtectedRoutes>
+              <Brands />{' '}
+            </ProtectedRoutes>
+          ),
+        },
+        {
+          path: 'AllOrders',
+          element: (
+            <ProtectedRoutes>
+              <AllOrders />{' '}
+            </ProtectedRoutes>
+          ),
+        },
         { path: 'login', element: <Login /> },
         { path: 'register', element: <Regirster /> },
         { path: 'details/:id', element: <ProductDetails /> },
-        { path: 'Checkout', element: <ProtectedRoutes><Checkout/> </ProtectedRoutes>},
+        {
+          path: 'Checkout',
+          element: (
+            <ProtectedRoutes>
+              <Checkout />{' '}
+            </ProtectedRoutes>
+          ),
+        },
+        {
+          path: 'forgot-password',
+          element: <ForgotPassword />,
+        },
+        {
+          path: '/verifyCode',
+          element: <VerifyCode />,
+        },
+        {
+          path: '/update-password',
+          element: <UpdatePassword />,
+        },
+
         { path: '*', element: <NotFound /> },
       ],
     },
   ]);
 
   useEffect(() => {
-    if (localStorage.getItem("userToken") != null) {
-      setToken(localStorage.getItem("userToken"))
+    if (localStorage.getItem('userToken') != null) {
+      setToken(localStorage.getItem('userToken'));
     }
-  }, [])
+  }, []);
 
-  return <RouterProvider router={routes}></RouterProvider>
-
+  return <RouterProvider router={routes}></RouterProvider>;
 }
 
 export default App;

@@ -34,7 +34,7 @@ async function ForgotPassword() {
   };
 
   return (
-    <div>
+    <div className='mt-4'>
       <h2>Forgot Password</h2>
       <form onSubmit={handleSubmit}>
         <div>
