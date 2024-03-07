@@ -1,3 +1,4 @@
+import { axios } from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,7 +15,7 @@ async function ForgotPassword() {
     navigate('/');
     try {
       // Send a request to your backend to handle the password reset
-      const {response} = await fetch('https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords', {
+      const {response} = await axios('https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

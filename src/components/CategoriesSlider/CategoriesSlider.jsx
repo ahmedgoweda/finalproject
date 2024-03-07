@@ -38,9 +38,9 @@ export default function CategoriesSlider() {
                 {
             categories?(
 
-                categories.map(cat=><div className='items px-3 p-3' key={cat._id}>
+                categories.map(cat=><div className='items px-3' key={cat._id}>
                 <img src={cat.image} className='w-100' height={'100'} alt="" />
-                <h5 className='p-3 h6 '>{cat.name.split(" ").slice(0, 1).join(0, 1)}</h5>
+                <h5 className='p-3 h6'>{cat.name.split(" ").slice(0, 1).join(0, 1)}</h5>
               
             
             </div>)):null
