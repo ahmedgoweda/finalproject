@@ -22,7 +22,7 @@ export default function Navbar() {
   }
   return (
     <>
-      <nav className="navbar bg-info text-muted mt-1 fixed-top navbar-expand-lg container-fluid">
+      <nav className="navbar bg-info text-muted mt-1 fixed- navbar-expand-lg container-fluid">
         <div className="container">
           <Link className="navbar-brand" to="/login">
             <img src={logo} alt="fresh cart logo" />
@@ -48,6 +48,11 @@ export default function Navbar() {
               <li className="nav-item">
                 <Link className="nav-link" to="/products">
                   Products
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/WishList">
+                WishList
                 </Link>
               </li>
               <li className="nav-item">

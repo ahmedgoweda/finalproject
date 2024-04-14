@@ -29,6 +29,11 @@ function deleteProductFromCart(id) {
         })
         .then((res) => res).catch((err) => err)
 }
+
+
+
+
+
 function updateProduct(id, count) {
     return axios.put(`https://ecommerce.routemisr.com/api/v1/cart/${id}`, {
         count
@@ -50,15 +55,15 @@ export default function CartContextProvider(props) {
         })
             .then((res) => res).catch((err) => err)
     }
-    
+
     // async function getinaitialCart() {
     //     let { data } = await GetCart();
     //     setNumOfCartItems(data?.numOfCartItems)
     //     setCartId(data?.data._id)
     // }
 
-    function setCartInfo({numOfCartItems,id}){
-         setNumOfCartItems(numOfCartItems)
+    function setCartInfo({ numOfCartItems, id }) {
+        setNumOfCartItems(numOfCartItems)
         setCartId(id)
     }
 
@@ -67,7 +72,17 @@ export default function CartContextProvider(props) {
     // }, [])
 
     return <CartContext.Provider
-        value={{ addToCart, GetCart, deleteProductFromCart, updateProduct, onlinePaymenit, numOfCartItems, setNumOfCartItems,setCartInfo }}>
+        value={{
+            addToCart,
+            GetCart,
+            deleteProductFromCart,
+            updateProduct,
+            onlinePaymenit,
+            numOfCartItems,
+            setNumOfCartItems,
+            setCartInfo,
+         
+        }}>
         {props.children}
 
     </CartContext.Provider>

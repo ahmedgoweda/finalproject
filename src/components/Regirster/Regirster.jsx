@@ -52,9 +52,9 @@ export default function Regirster() {
 
   return (
     <>
-     <Helmet>
-            <title>register page </title>
-        </Helmet>
+      <Helmet>
+        <title>register page </title>
+      </Helmet>
 
       <div className="w-50 mx-auto my-5">
         <h2>Regirster Now</h2>
@@ -140,9 +140,9 @@ export default function Regirster() {
             {regasterForm.errors.phone && regasterForm.touched.phone ? <div className="alert alert-danger" >{regasterForm.errors.phone} </div> : null}
           </div>
           <button className="d-block ms-auto btn bg-main text-white mt-3" disabled={!(regasterForm.isValid && regasterForm.dirty)}>
-            {isLoading ? <i className='fa fa-spinner fa-spin'></i>:'Regirster'}
+            {isLoading ? <i className='fa fa-spinner fa-spin'></i> : 'Regirster'}
 
-     
+
           </button>
         </form>
       </div>

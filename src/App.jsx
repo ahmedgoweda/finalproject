@@ -19,6 +19,7 @@ import AllOrders from './components/AllOrders/AllOrders';
 import ForgotPassword from './components/ResetPassword/forgotPasswrod/forgotPasswrod';
 import VerifyCode from './components/ResetPassword/VerifyResetCode/VerifyCode';
 import UpdatePassword from './components/ResetPassword/SetNewPassword/UpdatePassword';
+import WishList from './components/WishList/WishList';
 
 function App() {
   let { setToken } = useContext(TokenContext);
@@ -53,6 +54,14 @@ function App() {
             </ProtectedRoutes>
           ),
         },
+        // {
+        //   path: 'WishList',
+        //   element: (
+        //     <ProtectedRoutes>
+        //     <WishList/>{' '}
+        //     </ProtectedRoutes>
+        //   ),
+        // },
         {
           path: 'brands',
           element: (
